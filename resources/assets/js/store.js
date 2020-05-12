@@ -7,10 +7,10 @@ import axios from 'axios';
 
 export function createStore () {
   return new Vuex.Store({
-    state: {
+    state: () => ({
       name: undefined,
       user: "default user"
-    },
+    }),
     actions: {
       getUser({commit}) {
         return axios.get('https://api.github.com/users/barbier').then((response) => {

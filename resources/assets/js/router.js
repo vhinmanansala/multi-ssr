@@ -1,8 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Page from './components/Page'
 
-Vue.use(Router);
+Vue.use(Router); 
 
 function PageComponent(name) {
  return {
@@ -10,11 +9,13 @@ function PageComponent(name) {
  };
 }
 
-export default new Router({
-  mode: 'history',
-  routes: [
-    { path: '/', component: Page, name: 'home' },
-    { path: '/about', component: Page, name: 'about' },
-    { path: '/contact', component: Page, name: 'contact' }
-  ]
-});
+export function createRouter () {
+	return new Router({
+	  mode: 'history',
+	  routes: [
+	    { path: '/', component: () => System.import('./components/Page.vue'), name: 'home' },
+	    { path: '/about', component: () => System.import('./components/Page.vue'), name: 'about' },
+	    { path: '/contact', component: () => System.import('./components/Page.vue'), name: 'contact' }
+	  ]
+	});
+}

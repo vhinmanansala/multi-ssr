@@ -1,11 +1,8 @@
-import app from './app'
-import { createStore } from './store'
+import { createApp } from './app'
+import Vue from 'vue'
 
-let store = createStore();
+const { app, router } = createApp();
 
-if (window.__INITIAL_STATE__) {
-  // We initialize the store state with the data injected from the server
-  store.replaceState(window.__INITIAL_STATE__)
-}
-
-app.$mount('#app', true);
+router.onReady(function() {
+  app.$mount('#app');
+});
