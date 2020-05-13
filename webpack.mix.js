@@ -11,10 +11,13 @@ let mix = require('laravel-mix');
  |
  */
 
-mix
-  .js('resources/assets/js/entry-client.js', 'public/js')
+ mix
   .js('resources/assets/js/entry-server.js', 'public/js')
-;
+  .webpackConfig(() => ({
+    target: 'node', // By default target = web
+}));
+
+mix.js('resources/assets/js/entry-client.js', 'public/js');
 
 mix.webpackConfig({
   resolve: {
